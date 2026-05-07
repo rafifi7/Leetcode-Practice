@@ -27,3 +27,24 @@ class Solution:
         dfs(root)
         return ret
         
+
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]: # type: ignore
+        # inorder is left node right
+        ret = []
+        #iterative solution
+        stack = []
+        cur = root
+        while stack or cur:
+            while cur:
+                # add parents to stack
+                stack.append(cur)
+                # go down to the very left
+                cur = cur.left
+            # add left most node to ret
+            node = stack.pop()
+            ret.append(node.val)
+
+            # add the right nodes
+            cur = node.right
+        return ret
